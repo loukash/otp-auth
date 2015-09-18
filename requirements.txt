@@ -1,0 +1,6 @@
+Flask
+Flask-Script
+Flask-WTF
+peewee
+uuid
+onetimepass
