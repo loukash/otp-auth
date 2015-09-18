@@ -73,12 +73,16 @@ sudo service nginx reload
 
 ###
 Управление базой пользователей
+
 python manage.py (initdb|useradd|userdel|userlist|renew)
 
+
+| Назначение            | Команда |
+| --------------------- | ------------- |
 | Создать базу | initdb |
 | Добавить пользователя | python manage.py useradd -l test |
-| Удалить пользователя |python manage.py userdel -l test |
-| Список пользователей | python manage.py userlist |
+| Удалить пользователя  |python manage.py userdel -l test |
+| Список пользователей  | python manage.py userlist |
 | Генерация новых резервных кодов | python manage.py renew -l test -с 5|
 
 Если ключи не указаны явно, то они будут запрошены.
