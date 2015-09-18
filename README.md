@@ -15,7 +15,7 @@ sudo aptitude update && sudo aptitude install nginx-extras
 
 * Клонировать репозитарий
 ```
-git clone git@bitbucket.org:loukash/otp-auth.git
+git clone git@github.com:loukash/otp-auth.git
 ```
 
 * Установить все зависимости для python2.7
