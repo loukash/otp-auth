@@ -30,8 +30,8 @@ def initdb():
 
     try:
         db.create_tables([User])
-    except:
-        print "Can't create a database."
+    except Exception, e:
+        print "Unexpected error: %s" % e
 
 
 @manager.command
