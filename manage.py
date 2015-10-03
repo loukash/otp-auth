@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -
 
-import sys
 import random as _random
 
 from peewee import *

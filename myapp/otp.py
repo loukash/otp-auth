@@ -5,22 +5,15 @@ import uuid
 import onetimepass as otp
 
 from peewee import *
-# from playhouse.db_url import connect
 from playhouse.flask_utils import FlaskDB
 from flask import request, redirect, render_template, make_response, flash
 
 from myapp import app
 
-# db = connect(app.config['DATABASE'])
 db = FlaskDB(app)
 auth_url = app.config['AUTH_URL']
 login_url = app.config['LOGIN_URL']
 cookie_name = app.config['COOKIE_NAME']
-
-
-# class BaseModel(Model):
-#     class Meta:
-#         database = db
 
 
 class User(db.Model):
