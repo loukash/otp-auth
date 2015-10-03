@@ -5,11 +5,15 @@ import uuid
 import onetimepass as otp
 
 from peewee import *
-from flask import request, redirect, render_template,  make_response, flash
+from playhouse.db_url import connect
+from flask import request, redirect, render_template, make_response, flash
 
 from myapp import app
 
-db = SqliteDatabase('db.sqlite3', check_same_thread=False)
+db = connect(app.config['DATABASE_URI'])
+auth_url = app.config['AUTH_URL']
+login_url = app.config['LOGIN_URL']
+cookie_name = app.config['COOKIE_NAME']
 
 
 class BaseModel(Model):
@@ -42,7 +46,7 @@ def valid_emergency(user, code):
     return is_valid
 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route(login_url, methods=["GET", "POST"])
 def login():
 
     if request.method == "GET":
@@ -72,7 +76,7 @@ def login():
                 try:
                     user.sid = sid
                     user.save()
-                    resp.set_cookie('x-factor-sid', sid, httponly=True)
+                    resp.set_cookie(cookie_name, sid, httponly=True)
                 except Exception, e:
                     print "Unexpected error: %s" % e
 
@@ -85,10 +89,10 @@ def login():
             return redirect(request.referrer, code=302)
 
 
-@app.route("/auth", methods=["GET"])
+@app.route(auth_url, methods=["GET"])
 def auth():
 
-    sid = request.cookies.get('x-factor-sid')
+    sid = request.cookies.get(cookie_name)
 
     if sid is None:
         return "Unauthorized", 401
