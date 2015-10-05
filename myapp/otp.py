@@ -51,12 +51,7 @@ def login():
 
         if 'login' in request.form and 'code' in request.form:
             login = request.form["login"]
-
-            try:
-                code = int(request.form["code"])
-            except:
-                flash("Forbidden.", "danger")
-                return redirect(request.referrer, code=302)
+            code = request.form["code"]
 
             try:
                 user = User.get(User.login == login)

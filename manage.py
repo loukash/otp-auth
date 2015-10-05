@@ -19,8 +19,8 @@ def random_base32(length=16, random=_random.SystemRandom(), chars=list('ABCDEFGH
     return ''.join(random.choice(chars) for _ in range(length))
 
 
-def emergency(length=8, random=_random.SystemRandom(), digits=list('0123456789')):
-    return ''.join(random.choice(digits) for _ in range(length))
+def emergency(length=8, random=_random.SystemRandom(), chars=list('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')):
+    return ''.join(random.choice(chars) for _ in range(length))
 
 
 @manager.command
