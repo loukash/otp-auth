@@ -10,3 +10,7 @@ DATABASE = 'sqlite:///db.sqlite3'
 AUTH_URL = '/auth'
 LOGIN_URL = '/login'
 COOKIE_NAME = 'x-factor-sid'
+
+RECAPTCHA_ENABLED = False
+RECAPTCHA_SITE_KEY = ""
+RECAPTCHA_SECRET_KEY = ""

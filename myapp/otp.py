@@ -5,12 +5,15 @@ import uuid
 import onetimepass as otp
 
 from peewee import *
+from flask_recaptcha import ReCaptcha
 from playhouse.flask_utils import FlaskDB
 from flask import request, redirect, render_template, make_response, flash
 
 from myapp import app
 
 db = FlaskDB(app)
+recaptcha = ReCaptcha(app)
+
 auth_url = app.config['AUTH_URL']
 login_url = app.config['LOGIN_URL']
 cookie_name = app.config['COOKIE_NAME']
@@ -48,6 +51,10 @@ def login():
         return render_template('login.html')
 
     if request.method == "POST":
+
+        if not recaptcha.verify():
+            flash("Forbidden.", "danger")
+            return redirect(request.referrer, code=302)
 
         if 'login' in request.form and 'code' in request.form:
             login = request.form["login"]

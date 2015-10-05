@@ -79,6 +79,8 @@
 
         <input name="csrf_token" type="hidden" value="{{ csrf_token() }}">
 
+        {{ recaptcha }}
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
     </div>
