@@ -1,6 +1,6 @@
 # OTP-AUTH #
 
-## Простое приложение, которое позволяет совместно с nginx реализовать авторизацию по одноразовому паролю. ##
+Простое приложение, которое позволяет совместно с nginx реализовать авторизацию по одноразовому паролю.
 
 
 * Установить nginx >= 1.5.4 с поддержкой с модуля ngx_http_auth_request_module
@@ -86,3 +86,10 @@ python manage.py (initdb|useradd|userdel|userlist|renew)
 | Генерация новых резервных кодов | python manage.py renew -l test -с 5|
 
 Если ключи не указаны явно, то они будут запрошены.
+
+### Использование reCaptcha
+
+* Получить Ключ и Секретный ключ
+https://www.google.com/recaptcha/admin
+
+* Прописать их в config.py и разрешить reCAPTCHA опцией RECAPTCHA_ENABLED = True
